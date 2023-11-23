@@ -13,6 +13,7 @@
             margin-bottom: 10px;
         }
     </style>
+
 </head>
 
 <body class="bg-light">
@@ -24,7 +25,7 @@
             <!-- Contact form -->
             <div class="col-md-6 bg-white p-4 rounded">
                 <h2 class="text-center mb-4">Chat en Ligne</h2>
-                <form action="{{ route('contact.store') }}" method="post">
+                <form action="{{ route('contact.store') }}" method="post" id="monFormulaire">
 
                     @csrf
 
@@ -74,8 +75,27 @@
         setInterval(() => {
 
         }, 500);
-    </script>
 
+
+        let monFormulaire = document.getElementById("monFormulaire");
+
+        monFormulaire.addEventListener('submit', function (e) {
+
+            let name = document.getElementById("name");
+            let message = document.getElementById("message");
+            if (name.value.trim() == "") {
+                e.preventDefault();
+            } else {
+
+            }
+
+            if (message.value.trim() == "") {
+                e.preventDefault();
+            } else {
+
+            }
+        });
+    </script>
 </body>
 
 </html>
