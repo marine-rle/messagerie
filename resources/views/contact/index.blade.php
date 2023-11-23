@@ -72,7 +72,7 @@
 
         loadHTML();
         setInterval(() => {
-            loadHTML();
+
         }, 500);
     </script>
 
