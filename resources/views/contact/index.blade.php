@@ -12,6 +12,12 @@
         textarea {
             margin-bottom: 10px;
         }
+
+        #htmlContent {
+            height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
     </style>
 
 </head>
@@ -22,39 +28,31 @@
 
         <div class="row justify-content-center">
 
-            <!-- Contact form -->
-            <div class="col-md-6 bg-white p-4 rounded">
-                <h2 class="text-center mb-4">Chat en Ligne</h2>
-                <form action="{{ route('contact.store') }}" method="post" id="monFormulaire">
+            <div class="col-md-12 mb-4">
+                <div id="htmlContent" class="bg-white p-4 rounded">
+
+                </div>
+            </div>
+                <form action="{{ route('contact.store') }}" method="post" id="monFormulaire" class="form-inline">
 
                     @csrf
 
-                    <div class="form-group">
-                        <label for="name">{{ __('Pseudo') }}</label>
-                        <input type="text" class="form-control" name="name" id="name" required minlength="2" maxlength="50"
-                            placeholder="Davis Sophie">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="name" class="sr-only">{{ __('Pseudo') }}</label>
+                        <input type="text" class="form-control" name="name" id="name" required minlength="2"
+                            maxlength="50" placeholder="Pseudonyme">
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">{{ __('Message') }}</label>
-                        <textarea class="form-control" name="message" id="message" required minlength="2" maxlength="200"
-                            rows="5" placeholder="Écrivez votre message..."></textarea>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="message" class="sr-only">{{ __('Message') }}</label>
+                        <input type="text" class="form-control" name="message" id="message" required minlength="2"
+                            maxlength="200" rows="5" placeholder="Écrivez votre message...">
                     </div>
 
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-info">{{ __('Envoyer') }}</button>
-                    </div>
+                    <button type="submit" class="btn btn-info mb-2">{{ __('Envoyer') }}</button>
 
                 </form>
             </div>
-
-            <!-- Contact table -->
-            <div class="col-md-6">
-                <div id="htmlContent" class="bg-white p-4 rounded">
-                    <!-- This is where your chat content will be displayed -->
-                </div>
-            </div>
-
         </div>
 
     </div>
@@ -62,7 +60,7 @@
     <script>
         function loadHTML() {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
+            xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("htmlContent").innerHTML = this.responseText;
                 }
@@ -73,13 +71,13 @@
 
         loadHTML();
         setInterval(() => {
-
+            loadHTML();
         }, 500);
 
 
         let monFormulaire = document.getElementById("monFormulaire");
 
-        monFormulaire.addEventListener('submit', function (e) {
+        monFormulaire.addEventListener('submit', function(e) {
 
             let name = document.getElementById("name");
             let message = document.getElementById("message");

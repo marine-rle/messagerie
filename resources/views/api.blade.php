@@ -4,8 +4,8 @@ $recupMessage = $bdd->query('SELECT * FROM contacts');
 while ($message = $recupMessage->fetch()) {
     @endphp
     <div class="message">
-        <h4>{{ $message['name'] }}</h4>
-        <p>{{  $message['message'] }}</p>
+        <p><strong>{{ $message['name'] }}</strong> :
+        {{  $message['message'] }}</p>
     </div>
     @php
 }
